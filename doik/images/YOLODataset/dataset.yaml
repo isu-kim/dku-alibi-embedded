@@ -1,0 +1,4 @@
+train: C:\Users\doik0\Desktop\yolo\images\YOLODataset/images/train/
+val: C:\Users\doik0\Desktop\yolo\images\YOLODataset/images/val/
+nc: 4
+names: ["doik", "IU", "shokhrukh", "zabo"]
