@@ -34,8 +34,9 @@ func CheckEngagement(data common.ImageUpload, attendance *common.Attendance) err
 	}
 
 	var responsePayload struct {
-		Status string  `json:"status"`
-		Value  float32 `json:"value"`
+		Status   string `json:"status"`
+		Sleeping bool   `json:"sleeping"`
+		Yawning  bool   `json:"yawning"`
 	}
 
 	err = json.NewDecoder(resp.Body).Decode(&responsePayload)
@@ -47,6 +48,7 @@ func CheckEngagement(data common.ImageUpload, attendance *common.Attendance) err
 		return errors.New("engagement engine returned a failure status")
 	}
 
-	attendance.Engagement = responsePayload.Value
+	attendance.Yawning = responsePayload.Yawning
+	attendance.Sleeping = responsePayload.Sleeping
 	return nil
 }

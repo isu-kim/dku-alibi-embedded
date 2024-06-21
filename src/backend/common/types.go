@@ -12,7 +12,8 @@ type ImageUpload struct {
 // Attendance Structure
 type Attendance struct {
 	StudentName string    `json:"student_name" bson:"student_name"`
-	Engagement  float32   `json:"engagement" bson:"engagement"`
+	Yawning     bool      `json:"yawning" bson:"'yawning'"`
+	Sleeping    bool      `json:"sleeping" bson:"sleeping"`
 	Timestamp   time.Time `json:"timestamp" bson:"timestamp"`
 	ClassName   string    `json:"class_name" bson:"class_name"`
 	ImageBase64 string    `json:"image_base_64" bson:"image_base_64"`
