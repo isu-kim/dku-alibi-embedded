@@ -15,8 +15,9 @@ ifeq (, $(shell which protoc-gen-go-grpc))
 	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 endif
 	go mod tidy
-	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative,require_unimplemented_servers=false $<
-
+	protoc -I . --go_out=. alibi.proto
+	protoc -I . --go-grpc_out=. alibi.proto
+	python -m grpc_tools.protoc --python_out=. --grpc_python_out=. --proto_path=. alibi.proto
 go.sum: go.mod
 	go get .
 
