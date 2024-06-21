@@ -33,14 +33,14 @@ func loadEnv() {
 
 	// parse mongodb
 	if !mongodbExists || mongodb == "" {
-		MongoDB = "mongodb://mongodb:3306"
+		MongoDB = "mongodb://127.0.0.1:27018"
 	} else {
 		MongoDB = mongodb
 	}
 
 	// parse engagement engine
 	if !engagementExists || engagement == "" {
-		EngagementEngine = "127.0.0.1:9092"
+		EngagementEngine = "http://127.0.0.1:9092"
 	} else {
 		EngagementEngine = engagement
 	}

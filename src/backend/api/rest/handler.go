@@ -65,4 +65,8 @@ func (ah *AlibiRestHandler) registerEndpoints() {
 	ah.router.HandleFunc("/login", func(writer http.ResponseWriter, request *http.Request) {
 		login(writer, request)
 	}).Methods("POST")
+
+	ah.router.HandleFunc("/get_students", func(writer http.ResponseWriter, request *http.Request) {
+		getStudents(writer, request)
+	})
 }

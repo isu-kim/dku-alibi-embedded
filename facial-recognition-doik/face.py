@@ -119,7 +119,7 @@ def main():
     global channel
     global stub
 
-    channel = grpc.insecure_channel("220.149.231.241:9090")
+    channel = grpc.insecure_channel("127.0.0.1:9090")
     stub = alibi_pb2_grpc.ImageUploadServiceStub(channel)
 
     while True:

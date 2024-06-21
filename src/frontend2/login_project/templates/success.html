@@ -1,16 +1,34 @@
-<!-- login_app/templates/success.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Success</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Display Data</title>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Login Successful!</h2>
-        <p>Welcome, {{ username }}!</p>
-    </div>
+    <p class="text-danger">{{ error }}</p>
+    <h1>Student Status</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Last Seen on</th>
+                <th>Image</th>
+                <th>Is Sleeping</th>
+                <th>Is Yawning</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in data %}
+                <tr>
+                    <td>{{ entry.name }}</td>
+                    <td>{{ entry.timestamp }}</td>
+                    <td><img src="data:image/jpeg;base64,{{ entry.image_base_64 }}" alt="Image"/></td>
+                    <td>{{ entry.sleeping }}</td>
+                    <td>{{ entry.yawning }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
