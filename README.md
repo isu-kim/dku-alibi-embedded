@@ -22,26 +22,35 @@
 We have utilized the following opensource projects:
 - [YOLO v8](https://github.com/ultralytics/ultralytics): Facial detection, engagement detection
 
+Also, for dataset, please refer to the following document:
+- [data.md](./data.md)
+
 ## Technologies Used
 ### ML
 - PyTorch
-- Tensorflow Lite
+- Dlib
 
 ### Cloud
-- Docker
-- Kubernetes
+- Docker + Docker Compose
 - MongoDB
+
+### Frontend, Backend
+- Flask
+- Django
 
 ### Communication
 - REST API
 - gRPC
+
+## Demo
+- TBD
 
 ## LICENSE
 The project utilizes a GPL License.
 
 ## Team
 - [Kim Doik (김도익)](https://github.com/DoIkk) - 32217072: Facial recognition and data labeling
-- [Kim Minjung (김민중)](https://github.com/eggplantgf) - 32200584: Engagement detection (sleepiness) and data labeling
+- [Kim Minjung (김민중)](https://github.com/eggplantgf) - 32200584: Engagement detection (sleepiness, yawn) and data labeling
 - [Kim Isu (김이수)](https://github.com/isu-kim) - 32190984: Backend, frontend cloud development and data labeling
 - [Shokhrukh Talatov](https://github.com/shokhtalat) - 32195077: Engagement detection (eye motion detection) and data labeling
 
