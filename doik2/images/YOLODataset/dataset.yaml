@@ -1,0 +1,4 @@
+train: C:\Users\doik0\Desktop\yolo\doik\images\YOLODataset/images/train/
+val: C:\Users\doik0\Desktop\yolo\doik\images\YOLODataset/images/val/
+nc: 9
+names: ["doik", "IU", "minjung", "rose", "shokhrukh", "yeji", "isu", "zabo", "jisoo"]
