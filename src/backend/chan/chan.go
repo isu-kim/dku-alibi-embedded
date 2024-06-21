@@ -6,6 +6,7 @@ import (
 	"alibi_backend/db"
 	"errors"
 	"log"
+	"time"
 )
 
 var Mc *MainChan
@@ -55,6 +56,8 @@ func (mc *MainChan) Start() {
 func processImageUpload(upload common.ImageUpload) {
 	ret := common.Attendance{
 		StudentName: upload.StudentName,
+		ImageBase64: upload.Pixels,
+		Timestamp:   time.Now(),
 	}
 
 	// check engagement of a specific face

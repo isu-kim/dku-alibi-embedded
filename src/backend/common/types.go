@@ -15,4 +15,5 @@ type Attendance struct {
 	Engagement  float32   `json:"engagement" bson:"engagement"`
 	Timestamp   time.Time `json:"timestamp" bson:"timestamp"`
 	ClassName   string    `json:"class_name" bson:"class_name"`
+	ImageBase64 string    `json:"image_base_64" bson:"image_base_64"`
 }
