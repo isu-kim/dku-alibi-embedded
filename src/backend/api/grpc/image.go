@@ -40,6 +40,6 @@ func parseImageStruct(request *apb.StudentFaceRequest) common.ImageUpload {
 	return common.ImageUpload{
 		StudentName: request.DetectedName,
 		Accuracy:    request.Accuracy,
-		Pixels:      request.ImageData,
+		Pixels:      request.ImageDataB64,
 	}
 }

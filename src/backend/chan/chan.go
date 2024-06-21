@@ -1,7 +1,9 @@
 package _chan
 
 import (
+	"alibi_backend/ai"
 	"alibi_backend/common"
+	"alibi_backend/db"
 	"errors"
 	"log"
 )
@@ -44,7 +46,28 @@ func (mc *MainChan) Start() {
 		select {
 		case imgUpload := <-mc.ImageUploadChan:
 			log.Printf("[Chan] Received Image Upload, (%s, %f)", imgUpload.StudentName, imgUpload.Accuracy)
-			// @todo, make this be added
+			processImageUpload(imgUpload)
 		}
 	}
+}
+
+// processImageUpload Function
+func processImageUpload(upload common.ImageUpload) {
+	ret := common.Attendance{
+		StudentName: upload.StudentName,
+	}
+
+	// check engagement of a specific face
+	err := ai.CheckEngagement(upload, &ret)
+	if err != nil {
+		log.Printf("[AI] Unable to check engagement: %v", err)
+	}
+
+	err = db.DBH.InsertAttendance(&ret)
+	if err != nil {
+		log.Printf("[Chan] Unable to store attendance to DB: %v", err)
+		return
+	}
+
+	log.Printf("[Chan] Successfully stored attendance check to DB")
 }
