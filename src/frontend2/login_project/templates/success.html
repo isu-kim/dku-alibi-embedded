@@ -4,31 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Display Data</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <p class="text-danger">{{ error }}</p>
-    <h1>Student Status</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Key</th>
-                <th>Last Seen on</th>
-                <th>Image</th>
-                <th>Is Sleeping</th>
-                <th>Is Yawning</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entry in data %}
-                <tr>
-                    <td>{{ entry.name }}</td>
-                    <td>{{ entry.timestamp }}</td>
-                    <td><img src="data:image/jpeg;base64,{{ entry.image_base_64 }}" alt="Image"/></td>
-                    <td>{{ entry.sleeping }}</td>
-                    <td>{{ entry.yawning }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="container mt-5">
+        <!-- Error message -->
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+        <h1 class="mb-4">Student Status</h1>
+
+        <!-- Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Last Seen on</th>
+                        <th>Is Sleeping</th>
+                        <th>Is Yawning</th>
+                        <th>Student Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in data %}
+                        <tr>
+                            <td>{{ entry.name }}</td>
+                            <td>{{ entry.timestamp }}</td>
+                            <td>{{ entry.sleeping }}</td>
+                            <td>{{ entry.yawning }}</td>
+                            <td><img src="data:image/jpeg;base64,{{ entry.image_base_64 }}" alt="Image" class="img-fluid"/></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

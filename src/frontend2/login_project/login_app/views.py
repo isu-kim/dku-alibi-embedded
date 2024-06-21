@@ -62,14 +62,15 @@ def success(request):
                     "timestamp": timestamp,
                     "image_base_64": image_base_64,
                     "yawning": entry["yawning"],
-                    "sleeping": entry["sleeping"]
+                    "sleeping": entry["sleeping"],
+                    "ago": int((datetime.now() - timestamp).total_seconds() // 60),
                 }
 
         data = []
         for i in last_entries:
             cur = {
                 "name": i,
-                "timestamp": last_entries[i]["timestamp"],
+                "timestamp": str(last_entries[i]["timestamp"]) + "(" + str(last_entries[i]["ago"]) + "minutes ago)",
                 "image_base_64": last_entries[i]["image_base_64"],
                 "yawning": last_entries[i]["yawning"],
                 "sleeping": last_entries[i]["sleeping"],
