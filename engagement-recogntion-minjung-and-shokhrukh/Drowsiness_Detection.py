@@ -64,10 +64,15 @@ def process_pixels():
     remote_ip = request.remote_addr
     print(f"Received pixels from {remote_ip}")
 
-    detect_sleepiness(frame)
-    detect_yawn(frame)
+    sleeping = detect_sleepiness(frame)
+    yawning = detect_yawn(frame)
+    result = {
+        'status': "success",
+        'sleeping': sleeping,
+        'yawning': yawning
+    }
 
-    return jsonify({'message': 'Received and processed pixels successfully'})
+    return jsonify(result)
 
 
 def detect_sleepiness(frame):
@@ -91,9 +96,9 @@ def detect_sleepiness(frame):
         cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
 
         if ear < thresh:  # 눈을 감은 경우
-            print("sleeping")
+            return True
         else:  # 눈을 뜬 경우
-            print("focusing")
+            return False
 
 
 def detect_yawn(frame):
@@ -120,7 +125,9 @@ def detect_yawn(frame):
         cv2.drawContours(frame, [lip], -1, (0, 255, 0), 1)
 
         if distance > yawn_thresh:  # 하품을 한 경우
-            print("yawned!")
+            return True
+        else:
+            return False
 
 
 if __name__ == "__main__":
