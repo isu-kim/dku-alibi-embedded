@@ -60,4 +60,9 @@ func (ah *AlibiRestHandler) registerEndpoints() {
 	ah.router.HandleFunc("/health", func(writer http.ResponseWriter, request *http.Request) {
 		healthCheck(writer, request)
 	}).Methods("GET")
+
+	// /login endpoint
+	ah.router.HandleFunc("/login", func(writer http.ResponseWriter, request *http.Request) {
+		login(writer, request)
+	}).Methods("POST")
 }
