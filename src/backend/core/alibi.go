@@ -1,44 +1,42 @@
 package core
 
-import "main/api"
+import (
+	"alibi_backend/api"
+	"alibi_backend/chan"
+)
 
 var AlibiH *Alibi
 
-// init Function
-func init() {
-	// @todo: add init logic
-}
-
 // Alibi struct
 type Alibi struct {
-	host      string `yaml:"host"`
-	port      int    `yaml:"port"`
 	apiServer *api.Server
+	mc        *_chan.MainChan
+}
+
+func init() {
+	AlibiH = NewAlibi()
 }
 
 // NewAlibi Function
-func NewAlibi(host string, port int) *Alibi {
-	ret := &Alibi{
-		host: host,
-		port: port,
+func NewAlibi() *Alibi {
+	return &Alibi{
+		apiServer: api.ApiS,
+		mc:        _chan.Mc,
 	}
-
-	ret.apiServer = api.NewServer(host, port)
-	AlibiH = ret
-
-	return ret
 }
 
 // DestroyAlibi Function
 func (ah *Alibi) DestroyAlibi() {
 	// @todo add close logic
-
 }
 
 // Run Function
 func (ah *Alibi) Run() error {
-	// @todo: add more run start function
+	// run gRPC, REST API
 	ah.apiServer.Start()
+
+	// run channels
+	ah.mc.Start()
 
 	return nil
 }

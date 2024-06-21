@@ -1,43 +1,43 @@
 package api
 
 import (
-	"fmt"
-	"net/http"
+	"alibi_backend/api/grpc"
+	"alibi_backend/api/rest"
 )
+
+// ApiS global reference
+var ApiS *Server
+
+// init Function
+func init() {
+	ApiS = NewServer()
+}
 
 // Server structure
 type Server struct {
-	Host   string
-	Port   int
-	server *http.Server
+	restServer *rest.AlibiRestHandler
+	gRPCServer *grpc.AlibiGRPCHandler
 }
 
 // NewServer Function
-func NewServer(host string, port int) *Server {
+func NewServer() *Server {
 	return &Server{
-		Host: host,
-		Port: port,
-	}
-}
-
-// Init Function
-func (s *Server) Init() {
-	s.server = &http.Server{
-		Addr: fmt.Sprintf("%s:%d", s.Host, s.Port),
+		restServer: rest.RestH,
+		gRPCServer: grpc.GrpcH,
 	}
 }
 
 // Start Function
 func (s *Server) Start() {
-	if s.server == nil {
-		s.Init()
+	// run gRPC Server
+	err := grpc.Start()
+	if err != nil {
+		return
 	}
 
-	// run in other goroutine
-	go func() {
-		err := s.server.ListenAndServe()
-		if err != nil {
-			return
-		}
-	}()
+	// run REST API Server
+	err = rest.Start()
+	if err != nil {
+		return
+	}
 }
