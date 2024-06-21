@@ -14,7 +14,7 @@ def eye_aspect_ratio(eye):  # 눈의 특징적 비율을 계산하는 함수
 thresh = 0.25  # 눈을 감은 것을 판단하는 threshold 값
 frame_check = 20  # 눈을 감은 것을 판단하는 프레임 수 설정
 detect = dlib.get_frontal_face_detector()  # 얼굴 검출기 생성
-predict = dlib.shape_predictor("C:\yolov8\sleepy\models\shape_predictor_68_face_landmarks.dat")
+predict = dlib.shape_predictor("C:\yolov8\dku-alibi-embedded\sleepy\models\shape_predictor_68_face_landmarks.dat")
 (lStart, lEnd) = face_utils.FACIAL_LANDMARKS_68_IDXS["left_eye"]
 (rStart, rEnd) = face_utils.FACIAL_LANDMARKS_68_IDXS["right_eye"]
 cap = cv2.VideoCapture(0)  # 비디오 캡처 객체 생성
