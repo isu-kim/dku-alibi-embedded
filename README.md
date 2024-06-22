@@ -31,7 +31,7 @@ Also, for dataset, please refer to the following document:
 - Dlib
 
 ### Cloud
-- Docker + Docker Compose
+- Docker
 - MongoDB
 
 ### Frontend, Backend
@@ -42,8 +42,9 @@ Also, for dataset, please refer to the following document:
 - REST API
 - gRPC
 
-## Demo
-- TBD
+## Demo PPT
+> Click for Youtube redirect
+[![Video Label](http://img.youtube.com/vi/bdYUOdlMKRY/0.jpg)](https://youtu.be/bdYUOdlMKRY)
 
 ## LICENSE
 The project utilizes a GPL License.
